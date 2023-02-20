@@ -1,0 +1,42 @@
+{
+  "name": "website",
+  "version": "0.0.1",
+  "description": "A Quasar Project",
+  "productName": "Website",
+  "author": "JoseCadenas <50152606+JoseCadenas@users.noreply.github.com>",
+  "private": true,
+  "scripts": {
+    "dev": "quasar dev",
+    "build": "quasar build"
+  },
+  "dependencies": {
+    "@quasar/extras": "^1.15.11",
+    "core-js": "^3.28.0",
+    "firebase": "^9.17.1",
+    "pinia": "^2.0.30",
+    "quasar": "^2.11.6",
+    "vue": "^3.2.47",
+    "vue-i18n": "^9.2.2",
+    "vue-router": "^4.1.6",
+    "vuefire": "^3.0.1"
+  },
+  "devDependencies": {
+    "@quasar/app-webpack": "^3.7.1"
+  },
+  "browserslist": [
+    "last 10 Chrome versions",
+    "last 10 Firefox versions",
+    "last 4 Edge versions",
+    "last 7 Safari versions",
+    "last 8 Android versions",
+    "last 8 ChromeAndroid versions",
+    "last 8 FirefoxAndroid versions",
+    "last 10 iOS versions",
+    "last 5 Opera versions"
+  ],
+  "engines": {
+    "node": ">= 12.22.1",
+    "npm": ">= 6.13.4",
+    "yarn": ">= 1.21.1"
+  }
+}

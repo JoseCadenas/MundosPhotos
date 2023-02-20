@@ -1,0 +1,112 @@
+.fas,
+.fa-solid {
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    font-size: 20px !important;
+    padding: 2px;
+}
+
+/* Standard/Default is 14px */
+.gf-14,
+.gf-body {
+    font-size: 0.875rem;
+}
+
+.gf-48 {
+    font-size: 3rem;
+}
+
+.gf-40 {
+    font-size: 2.5rem;
+}
+
+.gf-32 {
+    font-size: 2rem;
+}
+
+.gf-30 {
+    font-size: 1.875rem;
+}
+
+.gf-28 {
+    font-size: 1.75rem;
+}
+
+.gf-26 {
+    font-size: 1.625rem;
+}
+
+/* Header (set below gf-weight-medium) */
+.gf-24 {
+    font-size: 1.5rem;
+}
+
+.gf-22 {
+    font-size: 1.375rem;
+}
+
+.gf-20 {
+    font-size: 1.25rem;
+}
+
+.gf-18 {
+    font-size: 1.125rem;
+}
+
+.gf-16 {
+    font-size: 1rem;
+}
+
+.gf-13 {
+    font-size: 0.8125rem;
+}
+
+.gf-12 {
+    font-size: 0.75rem;
+}
+
+.gf-10 {
+    font-size: 0.625rem;
+}
+
+.gf-8 {
+    font-size: 0.5rem;
+}
+
+/* Global Font - Font Weights */
+/* Standard/Default is 500 weight */
+.gf-weight-medium {
+    font-weight: 500 !important;
+}
+
+.gf-header {
+    font-weight: 500 !important;
+    font-size: 1.5rem;
+    /* 24px */
+}
+
+.gf-title {
+    font-weight: 500 !important;
+    font-size: 0.875rem;
+    /* 14px */
+}
+
+.gf-weight-thin {
+    font-weight: 100 !important;
+}
+
+.gf-weight-light {
+    font-weight: 300 !important;
+}
+
+.gf-weight-regular {
+    font-weight: 400 !important;
+}
+
+.gf-weight-bold {
+    font-weight: 700 !important;
+}
+
+.gf-weight-bolder {
+    font-weight: 900 !important;
+}

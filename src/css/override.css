@@ -1,0 +1,24 @@
+/* Quasar */
+.on-top {
+    margin-bottom: 8px;
+}
+
+.on-right {
+    margin-left: 8px;
+}
+
+.on-bottom {
+    margin-top: 8px;
+}
+
+.on-left {
+    margin-right: 8px;
+}
+
+.q-card__section--vert {
+    padding: 8px;
+}
+
+.text-subtle {
+    color: #616161 !important;
+}
