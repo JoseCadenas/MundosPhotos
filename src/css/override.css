@@ -15,10 +15,21 @@
     margin-right: 8px;
 }
 
+.text-subtle {
+    color: #616161 !important;
+}
+
+.grecaptcha-badge {
+    visibility: hidden;
+}
+
 .q-card__section--vert {
     padding: 8px;
 }
 
-.text-subtle {
-    color: #616161 !important;
+.q-toolbar {
+    position: relative;
+    padding: 0 8px;
+    min-height: 50px;
+    width: 100%;
 }

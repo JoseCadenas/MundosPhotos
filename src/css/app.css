@@ -85,6 +85,12 @@
     /* 24px */
 }
 
+.gf-sub-header {
+    font-weight: 500 !important;
+    font-size: 1.25rem;
+    /* 24px */
+}
+
 .gf-title {
     font-weight: 500 !important;
     font-size: 0.875rem;
@@ -109,4 +115,8 @@
 
 .gf-weight-bolder {
     font-weight: 900 !important;
+}
+
+.resize-transition {
+    transition: width .5s, height .5s
 }

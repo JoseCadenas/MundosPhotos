@@ -1,0 +1,5 @@
+{
+  "projects": {
+    "default": process.env.VITE_MUNDOS_PHOTOS_PROJECT_ID
+  }
+}

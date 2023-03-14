@@ -5,8 +5,8 @@
     <!-- Title -->
     <div
       :class="[
-        ...(computedTitleClass ?? {}),
         inline ? 'on-left items-center' : '',
+        ...(computedTitleClass ?? {}),
       ]"
       :style="titleStyle"
     >
@@ -24,8 +24,13 @@
         {{ poundSign ? "#" : "" }}
         <div
           v-if="requirements"
-          :class="['gf-12 self-center on-right', requirements?.class]"
+          :class="[
+            'gf-12 self-center',
+            requirements?.removeOnRight ? '' : 'on-right',
+            requirements?.class,
+          ]"
         >
+          <base-icon v-if="requirements?.icon" :name="requirements?.icon" />
           {{ requirements?.label }}
         </div>
         <BaseIcon
@@ -87,7 +92,10 @@ const computedWrapperClass = computed(() => {
   if (props?.inline) base.push("row items-center");
 
   if (!props?.class) return base;
-  if (["string", "object"].includes(typeof props?.class)) {
+  if (
+    ["string", "object"].includes(typeof props?.class) &&
+    !Array.isArray(props?.class)
+  ) {
     base.push(props?.class);
   } else base.push(...props?.class);
 
@@ -119,8 +127,10 @@ const computedDataClass = computed(() => {
 const requirements = computed(() => {
   if (props?.required)
     return {
-      label: i18n?.t("required"),
-      class: "text-red",
+      // label: i18n?.t("required"),
+      icon: global?.iconList?.asterisk,
+      class: "text-negative",
+      removeOnRight: true,
     };
   else if (props?.optional)
     return {

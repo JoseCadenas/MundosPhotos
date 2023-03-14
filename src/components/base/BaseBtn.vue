@@ -5,6 +5,12 @@
     :noCaps="!caps"
     :label="global?.translation(label)"
   >
+    <template #default>
+      <slot name="default"></slot>
+    </template>
+    <template #loading>
+      <slot name="loading"></slot>
+    </template>
   </q-btn>
 </template>
 

@@ -5,6 +5,7 @@ import BaseInput from "src/components/base/BaseInput.vue";
 import BaseSelect from "src/components/base/BaseSelect.vue";
 import BaseBtn from "src/components/base/BaseBtn.vue";
 import BaseIcon from "src/components/base/BaseIcon.vue";
+import BasePhotoMasonry from "src/components/base/BasePhotoMasonry.vue";
 export default boot(({ app }) => {
     app.component('LanguageSelector', LanguageSelector);
     app.component('BaseInfo', BaseInfo);
@@ -12,4 +13,5 @@ export default boot(({ app }) => {
     app.component('BaseSelect', BaseSelect);
     app.component('BaseBtn', BaseBtn);
     app.component('BaseIcon', BaseIcon);
+    app.component('BasePhotoMasonry', BasePhotoMasonry);
 })

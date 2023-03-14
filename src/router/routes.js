@@ -3,10 +3,9 @@ const routes = [
     path: '/',
     component: () => import('src/layouts/mainLayout.vue'),
     children: [
-      { name: "home", path: '', meta: { requiresAuth: false }, component: () => import('src/pages/home.vue') },
-      { name: "signIn", path: 'signIn', alias: 'login', meta: { requiresAuth: false }, component: () => import('src/pages/userAuth/signIn.vue') },
-      { name: "signUp", path: 'signUp', alias: 'register', meta: { requiresAuth: false }, component: () => import('src/pages/userAuth/signUp.vue') },
-      { name: "account", path: 'user/:uid', meta: { requiresAuth: true }, component: () => import('src/pages/account.vue') },
+      { name: "photography", path: '', alias: ['photography', 'p'], meta: { requiresAuth: false }, component: () => import('src/pages/photography.vue') },
+      { name: "photoBooth", path: 'photoBooth', alias: 'pb', meta: { requiresAuth: false }, component: () => import('src/pages/photoBooth.vue') },
+      { name: "contactUs", path: 'contactUs', alias: 'pb', component: () => import('src/pages/contactUs.vue') },
     ]
   },
   //Do not delete

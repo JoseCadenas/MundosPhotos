@@ -3,9 +3,10 @@
     :dense="!notDense"
     :filled="!notFilled"
     :rules="computedRules"
-    :type="isPasswordVisible ? 'text' : type"
+    bottom-slots
+    :type="type == 'password' && isPasswordVisible ? 'text' : type"
     :error-message="global?.translation(errorMessage)"
-    @update:modelValue="emit('update:input', $event)"
+    @update:modelValue="$emit('update:input', $event)"
     :modelValue="input"
   >
     <template v-slot:append>
@@ -27,35 +28,48 @@
   </q-input>
 </template>
 
-
-<script setup>
-import { ref, inject } from "vue";
-const { computed } = require("@vue/runtime-core");
-const { useI18n } = require("vue-i18n");
-const i18n = useI18n();
-const emit = defineEmits(["update:input"]);
-const global = inject("global");
-
-const props = defineProps({
-  input: {
-    required: true,
-  },
-  type: {
+<script>
+import { useI18n } from "vue-i18n";
+import { ref, computed, inject } from "vue";
+import { useRouter } from "vue-router";
+export default {
+  name: "BasePhotoMasonry",
+  emits: ["update:input"],
+  props: {
+    input: {
+      required: true,
+    },
     type: String,
+    notDense: Boolean,
+    notFilled: Boolean,
+    rules: [Array, Boolean],
+    errorMessage: String,
   },
-  notDense: Boolean,
-  notFilled: Boolean,
-  rules: [Array, Boolean],
-  errorMessage: String,
-});
+  setup(props) {
+    const i18n = useI18n();
+    const global = inject("global");
+    const router = useRouter();
 
-const isPasswordVisible = ref(false);
+    const isPasswordVisible = ref(false);
 
-const computedRules = computed(() => {
-  if (!props?.rules) return null;
+    const computedRules = computed(() => {
+      if (!props?.rules) return null;
 
-  if (typeof props?.rules == "boolean" && props?.rules) {
-    return [(val) => val?.length || i18n?.t("rules.input")];
-  } else return props?.rules;
-});
+      if (typeof props?.rules == "boolean" && props?.rules == true) {
+        if (["tel", "number"].includes(props?.type))
+          return [(val) => !!val || i18n?.t("rules.input")];
+        else return [(val) => val?.length || i18n?.t("rules.input")];
+      } else if (props?.rules) return props?.rules;
+      else return null;
+    });
+
+    return {
+      i18n,
+      global,
+      router,
+      isPasswordVisible,
+      computedRules,
+    };
+  },
+};
 </script>

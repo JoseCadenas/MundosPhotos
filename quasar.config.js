@@ -81,7 +81,12 @@ module.exports = configure(function (ctx) {
 
     // https://v2.quasar.dev/quasar-cli-webpack/quasar-config-js#Property%3A-framework
     framework: {
-      config: {},
+      config: {
+        brand: {
+          primary: '#000000',
+          secondary: '#FFFFFF',
+        }
+      },
 
       // iconSet: 'material-icons', // Quasar icon set
       // lang: 'en-US', // Quasar language pack
@@ -136,9 +141,9 @@ module.exports = configure(function (ctx) {
 
 
       manifest: {
-        name: `Website`,
-        short_name: `Website`,
-        description: `A Quasar Project`,
+        name: `MUNDOS PHOTOS`,
+        short_name: `mundosPhotos`,
+        description: `Mundo's photography and photo booth company website.`,
         display: 'standalone',
         orientation: 'portrait',
         background_color: '#ffffff',
@@ -203,7 +208,7 @@ module.exports = configure(function (ctx) {
       builder: {
         // https://www.electron.build/configuration/configuration
 
-        appId: 'website'
+        appId: 'MundosPhotos'
       },
 
       // "chain" is a webpack-chain object https://github.com/neutrinojs/webpack-chain

@@ -1,60 +1,69 @@
 <template>
-  <q-layout view="hHh Lpr lFf">
+  <q-layout view="hHh lpr lFf">
     <!-- Header -->
     <q-header elevated class="bg-black">
-      <q-toolbar class="row items-center q-gutter-x-sm">
-        <BaseBtn
-          flat
-          dense
-          :icon="global?.iconList?.menu"
-          @click="toggleDrawer"
+      <section
+        :class="['row items-end', q?.screen?.gt?.sm ? '' : 'justify-center']"
+      >
+        <!-- Logo -->
+        <q-img
+          v-scroll="onScroll"
+          :width="logoStyle?.width"
+          :height="logoStyle?.height"
+          class="resize-transition"
+          src="~assets/companyLogos/mundosPhotoLogo.png"
+          @click="
+            router.push({
+              name: 'photography',
+            })
+          "
         />
-        <q-toolbar-title> {{ $t("skeletonCode") }} </q-toolbar-title>
-        <q-space />
-        <base-btn
-          v-if="usersStore?.hasAuthUser"
-          :loading="isSigningOut"
-          label="signOut"
-          @click="signOut"
-        />
-        <LanguageSelector />
-      </q-toolbar>
+        <q-space v-if="q?.screen?.gt?.sm" />
+        <!-- Tabs -->
+        <q-tabs
+          :class="[q?.screen?.gt?.sm ? '' : 'col-12']"
+          mobile-arrows
+          inline-label
+          :modelValue="selectedTab"
+        >
+          <q-route-tab
+            v-for="tab of tabs"
+            :key="tab?.label"
+            :name="tab?.label"
+            :icon="tab?.icon"
+            :label="global?.translation(tab?.label)"
+            :to="tab?.to"
+          />
+        </q-tabs>
+      </section>
     </q-header>
-
-    <!-- Drawer -->
-    <q-drawer
-      bordered
-      show-if-above
-      :width="200"
-      :breakpoint="500"
-      class="bg-grey-3"
-      v-model="drawerState"
-    >
-      <q-scroll-area class="fit">
-        <q-list>
-          <template v-for="link in links" :key="link.title">
-            <q-item
-              v-ripple
-              clickable
-              :to="link?.to"
-              :active="link?.to?.name == route?.name"
-            >
-              <q-item-section avatar>
-                <q-icon :name="link.icon" />
-              </q-item-section>
-              <q-item-section>
-                {{ i18n.t(link.title) }}
-              </q-item-section>
-            </q-item>
-          </template>
-        </q-list>
-      </q-scroll-area>
-    </q-drawer>
 
     <!-- Page -->
     <q-page-container>
-      <q-page>
+      <q-page class="bg-white q-pa-sm q-pb-md scroll">
         <router-view />
+        <!-- Footer -->
+        <footer
+          :class="[
+            'absolute-bottom text-center text-subtle',
+            `gf-${q?.screen?.gt?.sm ? 10 : 8}`,
+          ]"
+        >
+          reCAPTCHA subject to Google
+          <a
+            target="_blank"
+            href="https://policies.google.com/privacy"
+            class="text-subtle"
+            >Privacy Policy</a
+          >
+          &
+          <a
+            target="_blank"
+            href="https://policies.google.com/terms"
+            class="text-subtle"
+            >Terms of Service</a
+          >
+        </footer>
       </q-page>
     </q-page-container>
   </q-layout>
@@ -62,78 +71,60 @@
 
 <script>
 import { useI18n } from "vue-i18n";
-import { computed, inject, ref } from "vue";
-import { useRoute } from "vue-router";
-import { useUsersStore } from "src/stores/services/users.js";
+import { computed, inject, reactive } from "vue";
+import { useRoute, useRouter } from "vue-router";
+import { useQuasar } from "quasar";
 export default {
   setup() {
     const i18n = useI18n();
     const global = inject("global");
     const route = useRoute();
-    const usersStore = useUsersStore();
+    const router = useRouter();
+    const q = useQuasar();
 
-    const drawerState = ref(false);
-    function toggleDrawer() {
-      drawerState.value = !drawerState.value;
-    }
-
-    const links = computed(() => {
-      const arr = [
-        {
-          title: "home",
-          icon: global?.iconList?.home,
-          to: { name: "home" },
-        },
-      ];
-
-      if (usersStore?.hasAuthUser) {
-        arr.push({
-          title: "account",
-          icon: global?.iconList?.account,
-          to: {
-            name: "account",
-            params: { uid: usersStore?.authorizedUser?.uid },
-          },
-        });
+    const logoStyle = reactive({ width: 160 + "px", height: 80 + "px" });
+    const onScroll = function (verticalScrollPosition) {
+      if (verticalScrollPosition > 200 && q?.screen?.gt?.sm) {
+        logoStyle.width = 96 + "px";
+        logoStyle.height = 48 + "px";
       } else {
-        arr.push(
-          {
-            title: "signIn",
-            icon: global?.iconList?.signIn,
-            to: { name: "signIn" },
-          },
-          {
-            title: "signUp",
-            icon: global?.iconList?.signUp,
-            to: { name: "signUp" },
-          }
-        );
-      }
-
-      return arr;
-    });
-
-    const isSigningOut = ref(false);
-    const signOut = async () => {
-      try {
-        isSigningOut.value = true;
-        await usersStore.signOut();
-      } catch (err) {
-        console.error("mainLayout - signOut", err);
-      } finally {
-        isSigningOut.value = false;
+        logoStyle.width = 160 + "px";
+        logoStyle.height = 80 + "px";
       }
     };
+
+    const selectedTab = computed(() => {
+      return route?.name;
+    });
+    const tabs = computed(() => {
+      return [
+        {
+          label: "photography",
+          icon: global?.iconList?.photography,
+          to: { name: "photography" },
+        },
+        {
+          label: "photoBooth",
+          icon: global?.iconList?.photoBooth,
+          to: { name: "photoBooth" },
+        },
+        {
+          label: "contactUs",
+          icon: global?.iconList?.contactUs,
+          to: { name: "contactUs" },
+        },
+      ];
+    });
     return {
       i18n,
       global,
       route,
-      usersStore,
-      drawerState,
-      toggleDrawer,
-      links,
-      isSigningOut,
-      signOut,
+      router,
+      q,
+      onScroll,
+      logoStyle,
+      selectedTab,
+      tabs,
     };
   },
 };

@@ -1,27 +1,31 @@
 {
-  "name": "website",
+  "name": "mundosPhotos",
   "version": "0.0.1",
-  "description": "A Quasar Project",
-  "productName": "Website",
+  "description": "Mundo's photography and photo booth company website.",
+  "productName": "Mundos Photos",
   "author": "JoseCadenas <50152606+JoseCadenas@users.noreply.github.com>",
   "private": true,
   "scripts": {
     "dev": "quasar dev",
-    "build": "quasar build"
+    "build": "quasar build",
+    "deploy": "firebase deploy --only hosting"
   },
   "dependencies": {
     "@quasar/extras": "^1.15.11",
-    "core-js": "^3.28.0",
-    "firebase": "^9.17.1",
-    "pinia": "^2.0.30",
-    "quasar": "^2.11.6",
+    "@vueuse/core": "^9.13.0",
+    "core-js": "^3.29.0",
+    "firebase": "^9.17.2",
+    "lodash": "^4.17.21",
+    "pinia": "^2.0.32",
+    "quasar": "^2.11.7",
     "vue": "^3.2.47",
     "vue-i18n": "^9.2.2",
+    "vue-recaptcha-v3": "^2.0.1",
     "vue-router": "^4.1.6",
-    "vuefire": "^3.0.1"
+    "vuefire": "^3.1.0"
   },
   "devDependencies": {
-    "@quasar/app-webpack": "^3.7.1"
+    "@quasar/app-webpack": "^3.7.2"
   },
   "browserslist": [
     "last 10 Chrome versions",
