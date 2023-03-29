@@ -7,7 +7,7 @@ Page on the website (e.g. photography or photoBooth)
 2. Navigate to "Documents/GitHub/website/public/photos/{page}"
 3. Add or remove photos
 4. Select all photos in folder (cmd+a) > Right click files > Click rename
-5. Match settings ![Rename type: Format, Name Format: Name and Index, Where: after name, Custom Format: photo, Start numbers at: 1]("src/assets/misc/readMeRenameFormat")
+5. Match settings ![Rename type: Format, Name Format: Name and Index, Where: after name, Custom Format: photo, Start numbers at: 1]("photos/misc/readMeRenameFormat")
 6. Click rename 
 7. Remember last/largest photo number
 8. Open Visual Studio Code with "Documents/GitHub/website"
@@ -18,6 +18,10 @@ Page on the website (e.g. photography or photoBooth)
 
 ### Start Development Mode (hot-code reloading, error reporting, etc.)
 ```npm run dev```
+
+### Stop Development Mode
+Click on terminal in VSCode
+Click ```ctr+c```
 
 ### Build
 ```npm run build```
