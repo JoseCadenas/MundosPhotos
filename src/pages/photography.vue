@@ -1,5 +1,5 @@
 <template>
-  <BasePhotoMasonry useMiddleSlot src="folder:photography" :numberOfPhotos="6">
+  <BasePhotoMasonry useMiddleSlot src="folder:photography" :numberOfPhotos="39">
     <template #middle>
       <q-card>
         <q-card-section class="column items-center">

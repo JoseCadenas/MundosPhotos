@@ -82,7 +82,7 @@ export default {
       if (props?.src?.includes("folder:")) {
         const folderPath = props?.src?.replace("folder:", "");
         for (let i = 1; i < props?.numberOfPhotos + 1 ?? 50; i++) {
-          arr.push(`photos/${folderPath}/photo${i}.jpeg`);
+          arr.push(`photos/${folderPath}/photo${i}.jpg`);
         }
       }
       return shuffle(arr);
