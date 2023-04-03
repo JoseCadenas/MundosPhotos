@@ -40,6 +40,7 @@
             v-for="(src, index) of data"
             :key="index"
             :src="src"
+            @contextmenu.prevent
             class="rounded-borders"
           />
         </section>
@@ -50,6 +51,7 @@
         v-for="(src, index) of data"
         :key="index"
         :src="src"
+        @contextmenu.prevent
         class="rounded-borders"
       />
     </section>
@@ -61,14 +63,12 @@ import { useI18n } from "vue-i18n";
 import { computed, inject } from "vue";
 import { useRouter } from "vue-router";
 import { useQuasar } from "quasar";
-import { storage, fb } from "src/boot/firebase";
-import { computedAsync } from "@vueuse/core";
 import { isPlainObject, shuffle } from "lodash";
+import resizePhotosOutput from "src/scripts/photos/resizePhotosOutput.js";
 export default {
   name: "BasePhotoMasonry",
   props: {
     src: "string",
-    numberOfPhotos: Number,
     useMiddleSlot: Boolean,
   },
   setup(props) {
@@ -77,15 +77,22 @@ export default {
     const router = useRouter();
     const q = useQuasar();
 
-    const photos = computedAsync(async () => {
-      const arr = [];
+    const photos = computed(() => {
+      let arr = [];
       if (props?.src?.includes("folder:")) {
-        const folderPath = props?.src?.replace("folder:", "");
-        for (let i = 1; i < props?.numberOfPhotos + 1 ?? 50; i++) {
-          arr.push(`photos/${folderPath}/photo${i}.jpg`);
-        }
+        const page = props?.src?.replace("folder:", "");
+        arr = resizePhotosOutput?.[page].map(
+          (fileName) => `photos/${page}/resized/${fileName}`
+        );
       }
+
       return shuffle(arr);
+    });
+    const photosWithSize = computed(() => {
+      return photos?.value?.map((fullPath) => {
+        const [path, extension] = fullPath?.split(".");
+        return `${path}_${q?.screen?.name}.${extension}`;
+      });
     });
     const numberOfColumns = computed(() => {
       if (q?.screen?.xs) return 1;
@@ -103,7 +110,7 @@ export default {
     });
     const columnObjects = computed(() => {
       const isMIArray = Array.isArray(middleIndexes?.value);
-      let arrays = (photos?.value || [])
+      let arrays = (photosWithSize?.value || [])
         .reduce(
           (arr, photo, index) => {
             const i = index % numberOfColumns?.value ?? 1;
@@ -135,7 +142,7 @@ export default {
             middleIndexes?.value?.[0] == index ? index : index - 1;
           if (!arr?.[insertIndex])
             arr[insertIndex] = {
-              class: numberOfColumns?.value == 2 ? "col-12" : "col-6",
+              class: numberOfColumns?.value == 2 ? "col" : "col-6",
               photos: [photos],
             };
           else arr[insertIndex].photos.push(photos);

@@ -2,7 +2,7 @@ import { boot } from 'quasar/wrappers'
 import { readonly } from 'vue';
 import { i18n } from 'src/boot/i18n.js';
 
-const numbers = {
+export const numbers = {
     randomNumber: (max = 9999999) => {
         return Math.floor(Math.random() * max)
     },
@@ -24,6 +24,44 @@ const numbers = {
         return Math.floor(Math.random() * max)
     }
 };
+
+const { startCase, camelCase, snakeCase, kebabCase, upperCase, lowerCase } = require('lodash');
+export const strings = {
+    caseModifier: (string, caseType) => {
+        let str = String(string);
+        const words = str.split(/[ _-]/); // split words by space, underscore or dash
+        switch (caseType) {
+            case "Capitalize":
+            case "c":
+                return str.charAt(0)?.toUpperCase() + str?.slice(1);
+            case "Title Case":
+            case 'tc':
+                return startCase(str);
+            case "PascalCase":
+            case 'pc':
+                return words?.reduce((acc, val) => acc + val?.charAt(0)?.toUpperCase() + val?.slice(1), '');
+            case "camelCase":
+            case 'cc':
+                return camelCase(str);
+            case "snake_case":
+            case 'sc':
+                return snakeCase(str);
+            case "kebab-case":
+            case 'kb':
+                return kebabCase(str);
+            case 'UPPERCASE':
+            case 'uppercase':
+            case 'upperCase':
+            case 'up':
+                return upperCase(str);
+            case 'lowercase':
+            case 'lc':
+                return lowerCase(str);
+            default:
+                throw new Error(`Invalid case type specified: ${caseType}`);
+        }
+    },
+}
 
 const global = {
     iconList: {

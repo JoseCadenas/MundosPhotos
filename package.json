@@ -6,9 +6,11 @@
   "author": "JoseCadenas <50152606+JoseCadenas@users.noreply.github.com>",
   "private": true,
   "scripts": {
+    "resizePhotos": "node src/scripts/photos/resizePhotos.js",
     "dev": "quasar dev",
     "build": "quasar build",
-    "deploy": "firebase deploy --only hosting"
+    "deploy": "firebase deploy --only hosting",
+    "buildThenDeploy": "npm run build && npm run deploy"
   },
   "dependencies": {
     "@quasar/extras": "^1.16.1",
@@ -18,6 +20,7 @@
     "lodash": "^4.17.21",
     "pinia": "^2.0.33",
     "quasar": "^2.11.9",
+    "sharp": "^0.32.0",
     "vue": "^3.2.47",
     "vue-i18n": "^9.2.2",
     "vue-recaptcha-v3": "^2.0.1",
