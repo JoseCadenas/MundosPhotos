@@ -2,7 +2,6 @@ import { defineStore } from "pinia";
 import { useFirestore } from "vuefire";
 import { addDoc, collection } from "firebase/firestore";
 
-                to: 'jmphotoboothco@gmail.com',
 export const useEmailStore = defineStore("email", {
   state: () => {
     return {
@@ -21,6 +20,7 @@ export const useEmailStore = defineStore("email", {
     async sendEmail(params) {
       const email = {
         replyTo: null,
+        to: process.env.VITE_PHOTO_BOOTH_EMAIL,
         cc: null,
         message: {
           subject: params?.subject ?? "",

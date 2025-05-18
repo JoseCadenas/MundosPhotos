@@ -34,6 +34,24 @@ export default defineConfig((ctx) => {
     // Full list of options: https://v2.quasar.dev/quasar-cli-webpack/quasar-config-js#Property%3A-build
     build: {
       vueRouterMode: "history", // available values: 'hash', 'history'
+      env: {
+        VITE_PHOTO_BOOTH_EMAIL: process.env.VITE_PHOTO_BOOTH_EMAIL,
+        VITE_MUNDOS_PHOTOS_FIREBASE_API_KEY:
+          process.env.VITE_MUNDOS_PHOTOS_FIREBASE_API_KEY,
+        VITE_MUNDOS_PHOTOS_FIREBASE_AUTH_DOMAIN:
+          process.env.VITE_MUNDOS_PHOTOS_FIREBASE_AUTH_DOMAIN,
+        VITE_MUNDOS_PHOTOS_PROJECT_ID:
+          process.env.VITE_MUNDOS_PHOTOS_PROJECT_ID,
+        VITE_MUNDOS_PHOTOS_STORAGE_BUCKET:
+          process.env.VITE_MUNDOS_PHOTOS_STORAGE_BUCKET,
+        VITE_MUNDOS_PHOTOS_MESSAGE_SENDER_ID:
+          process.env.VITE_MUNDOS_PHOTOS_MESSAGE_SENDER_ID,
+        VITE_MUNDOS_PHOTOS_APP_ID: process.env.VITE_MUNDOS_PHOTOS_APP_ID,
+        VITE_MUNDOS_PHOTOS_MEASUREMENT_ID:
+          process.env.VITE_MUNDOS_PHOTOS_MEASUREMENT_ID,
+        VITE_MUNDOS_PHOTOS_RECAPTCHA_SITE_KEY:
+          process.env.VITE_MUNDOS_PHOTOS_RECAPTCHA_SITE_KEY,
+      },
 
       // webpackTranspile: false,
       // publicPath: '/',

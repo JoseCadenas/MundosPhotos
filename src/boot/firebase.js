@@ -7,13 +7,13 @@ import { getStorage, ref, list, getDownloadURL } from "firebase/storage";
 import { useReCaptcha } from "vue-recaptcha-v3";
 
 export const firebaseApp = initializeApp({
-    apiKey: process.env.VITE_MUNDOS_PHOTOS_FIREBASE_API_KEY,
-    authDomain: process.env.VITE_MUNDOS_PHOTOS_FIREBASE_AUTH_DOMAIN,
-    projectId: process.env.VITE_MUNDOS_PHOTOS_PROJECT_ID,
-    storageBucket: process.env.VITE_MUNDOS_PHOTOS_STORAGE_BUCKET,
-    messagingSenderId: process.env.VITE_MUNDOS_PHOTOS_MESSAGE_SENDER_ID,
-    appId: process.env.VITE_MUNDOS_PHOTOS_APP_ID,
-    measurementId: process.env.VITE_MUNDOS_PHOTOS_MEASUREMENT_ID
+  apiKey: process.env.VITE_MUNDOS_PHOTOS_FIREBASE_API_KEY,
+  authDomain: process.env.VITE_MUNDOS_PHOTOS_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.VITE_MUNDOS_PHOTOS_PROJECT_ID,
+  storageBucket: process.env.VITE_MUNDOS_PHOTOS_STORAGE_BUCKET,
+  messagingSenderId: process.env.VITE_MUNDOS_PHOTOS_MESSAGE_SENDER_ID,
+  appId: process.env.VITE_MUNDOS_PHOTOS_APP_ID,
+  measurementId: process.env.VITE_MUNDOS_PHOTOS_MEASUREMENT_ID,
 });
 export const firestore = getFirestore(firebaseApp);
 
@@ -37,9 +37,13 @@ export const fb = { ref, list, getDownloadURL };
 //   }
 
 // reCAPTCHA v3
-export const reCaptchaSiteKey = process.env.VITE_MUNDOS_PHOTOS_RECAPTCHA_SITE_KEY;
-export const validateReCaptcha = async (key, { recaptchaLoaded, executeRecaptcha }) => {
-    await recaptchaLoaded();
+export const reCaptchaSiteKey =
+  process.env.VITE_MUNDOS_PHOTOS_RECAPTCHA_SITE_KEY;
+export const validateReCaptcha = async (
+  key,
+  { recaptchaLoaded, executeRecaptcha }
+) => {
+  await recaptchaLoaded();
 
   const token = await executeRecaptcha(key);
 };
