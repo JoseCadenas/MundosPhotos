@@ -5,7 +5,9 @@
   "productName": "Mundos Photos",
   "author": "JoseCadenas <50152606+JoseCadenas@users.noreply.github.com>",
   "private": true,
+  "type": "module",
   "scripts": {
+    "postinstall": "quasar prepare",
     "resizePhotos": "node src/scripts/photos/resizePhotos.js",
     "dev": "quasar dev",
     "build": "quasar build",
@@ -13,22 +15,23 @@
     "buildThenDeploy": "npm run build && npm run deploy"
   },
   "dependencies": {
-    "@quasar/extras": "^1.16.1",
-    "@vueuse/core": "^9.13.0",
-    "core-js": "^3.29.1",
+    "@quasar/extras": "^1.16.17",
+    "@vueuse/core": "^13.2.0",
+    "core-js": "^3.42.0",
     "firebase": "^11.7.3",
     "lodash": "^4.17.21",
-    "pinia": "^2.0.33",
-    "quasar": "^2.11.9",
-    "sharp": "^0.32.0",
-    "vue": "^3.2.47",
-    "vue-i18n": "^9.2.2",
+    "pinia": "^3.0.2",
+    "quasar": "^2.18.1",
+    "sharp": "^0.34.1",
+    "vue": "^3.5.14",
+    "vue-i18n": "^11.1.3",
     "vue-recaptcha-v3": "^2.0.1",
-    "vue-router": "^4.1.6",
-    "vuefire": "^3.1.0"
+    "vue-router": "^4.5.1",
+    "vuefire": "^3.2.1"
   },
   "devDependencies": {
-    "@quasar/app-webpack": "^3.7.2"
+    "@quasar/app-webpack": "^4.2.0",
+    "autoprefixer": "^10.4.21"
   },
   "browserslist": [
     "last 10 Chrome versions",

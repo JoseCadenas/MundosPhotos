@@ -16,7 +16,7 @@
 
 <script setup>
 import { inject } from "vue";
-const { useI18n } = require("vue-i18n");
+import { useI18n } from "vue-i18n";
 
 const i18n = useI18n();
 const global = inject("global");

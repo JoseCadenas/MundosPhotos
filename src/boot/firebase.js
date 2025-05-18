@@ -1,8 +1,8 @@
-import { boot } from 'quasar/wrappers'
-import { initializeApp } from 'firebase/app';
-import { getFirestore } from 'firebase/firestore';
-import { VueFire, VueFireAuth } from 'vuefire';
-import { VueReCaptcha } from 'vue-recaptcha-v3'
+import { defineBoot } from "#q-app/wrappers";
+import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
+import { VueFire, VueFireAuth } from "vuefire";
+import { VueReCaptcha } from "vue-recaptcha-v3";
 import { getStorage, ref, list, getDownloadURL } from "firebase/storage";
 import { useReCaptcha } from "vue-recaptcha-v3";
 
@@ -41,16 +41,16 @@ export const reCaptchaSiteKey = process.env.VITE_MUNDOS_PHOTOS_RECAPTCHA_SITE_KE
 export const validateReCaptcha = async (key, { recaptchaLoaded, executeRecaptcha }) => {
     await recaptchaLoaded();
 
-    const token = await executeRecaptcha(key);
-}
+  const token = await executeRecaptcha(key);
+};
 
-export default boot(({ app }) => {
-    app.use(VueFire, {
-        firebaseApp,
-        modules: [
-            // VueFireAuth(), // Auth     
-        ],
-    });
+export default defineBoot(({ app }) => {
+  app.use(VueFire, {
+    firebaseApp,
+    modules: [
+      // VueFireAuth(), // Auth
+    ],
+  });
 
-    app.use(VueReCaptcha, { siteKey: reCaptchaSiteKey });
-})
+  app.use(VueReCaptcha, { siteKey: reCaptchaSiteKey });
+});
