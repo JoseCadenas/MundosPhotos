@@ -16,7 +16,7 @@
     "@quasar/extras": "^1.16.1",
     "@vueuse/core": "^9.13.0",
     "core-js": "^3.29.1",
-    "firebase": "^9.18.0",
+    "firebase": "^11.7.3",
     "lodash": "^4.17.21",
     "pinia": "^2.0.33",
     "quasar": "^2.11.9",
