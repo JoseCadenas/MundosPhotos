@@ -9,9 +9,9 @@ storage.rules
 
 # Folders
 node_modules
-firebase
+.firebase
 functions
-vscode
+.vscode
 
 # Quasar core related directories
 .quasar
