@@ -1,6 +1,17 @@
 .DS_Store
 .thumbs.db
+*.local.js
+*.key
+*.pem
+*.p12
+npm-debug.log
+storage.rules
+
+# Folders
 node_modules
+firebase
+functions
+vscode
 
 # Quasar core related directories
 .quasar
